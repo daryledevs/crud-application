@@ -10,6 +10,7 @@
     height: 100vh;
 }
 .base-layout-container{
+    
     display: flex;
     flex-direction: column;
     margin: auto;

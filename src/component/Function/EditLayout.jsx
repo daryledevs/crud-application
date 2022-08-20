@@ -47,7 +47,7 @@ function EditLayout({
   }
   
   return (
-    <div>
+    <div className='edit-layout-container'>
       <form className='editForm' onSubmit={event => event.preventDefault()}>
         <label htmlFor='editName'>Name:</label>
         <input

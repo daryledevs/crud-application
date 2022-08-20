@@ -1,10 +1,31 @@
 .add-layout-container, .edit-layout-container{
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .addForm, .editForm{
   display: flex;
   flex-direction: column;
-  height: 100%;
-  align-items: flex-start;
+  height: 80%;
+  align-items: center;
+  overflow: hidden;
+}
+
+label{
+  color: white;
+  font-size: 20px;
+}
+
+.example{
+  color: rgba(255, 255, 255, 0.307);
+}
+input{
+  height: 30px;
+  width: 300px;
+}
+
+#editImageURL{
+  width: 300px;
 }

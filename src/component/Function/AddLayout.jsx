@@ -69,6 +69,7 @@ const AddLayout = (
           value={addImageURL}
           onChange={(event) => setAddImageURL(event.target.value)}
         />
+        <p className='example'>i.e.: https://via.placeholder.com/300x250?</p>
         <label htmlFor='addPrice'>Price:</label>
         <input
           id="addPrice"
