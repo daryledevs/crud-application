@@ -1,0 +1,10 @@
+.add-layout-container, .edit-layout-container{
+  height: 100%;
+}
+
+.addForm, .editForm{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  align-items: flex-start;
+}
