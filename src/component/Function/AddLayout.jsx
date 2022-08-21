@@ -14,7 +14,7 @@ const AddLayout = (
     addDescription,
     setAddDescription,
   }) => {
-  const [priceCheck, setPriceCheck] = React.useState(false)
+
   const navigation = useNavigate();
 
   function refreshState(){
@@ -36,20 +36,17 @@ const AddLayout = (
   };
 
   function addItem(id, name, imageURL, description, price){
-    const only_letters = /^[a-z]/
-    setPriceCheck(only_letters.test(price));
-
+    const special_char = /^[a-z]/
+    const price_input = special_char.test(price)
+    
     if(itemData.find(same_name => same_name.name === addName)) {
       window.alert("Name already exists!") 
       return false
     }
-
-    if(priceCheck){
+    if(price_input){
       window.alert("Letters is not allowed in Price field, only numbers.");
-      setPriceCheck(false);
       return false;
     }
-
     const newItemData = {id, name: name, imageURL: imageURL, description: description, price: price};
     const addNewItemData = [...itemData, newItemData];
     setItemData(addNewItemData);
@@ -89,7 +86,7 @@ const AddLayout = (
         />
         <p className='example'>i.e.: https://via.placeholder.com/300x250?</p>
         <label htmlFor='addDescription'>Description:</label>
-        <input
+        <textarea
           id="addDescription"
           type="text"
           required

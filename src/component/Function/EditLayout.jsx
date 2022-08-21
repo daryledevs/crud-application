@@ -20,6 +20,7 @@ function EditLayout({
     
     setEditName(current_item.name);
     setEditImageURL(current_item.imageURL);
+    setEditDescription(current_item.description);
     setEditPrice(current_item.price);
   
   }, [current_item, setEditName,setEditImageURL, setEditPrice])
@@ -67,7 +68,8 @@ function EditLayout({
           value={editImageURL}
           onChange={(event) => setEditImageURL(event.target.value)}
         />
-        <input
+        <label htmlFor='editDescription'>Description:</label>
+        <textarea
           id="editDescription"
           type="text"
           required
