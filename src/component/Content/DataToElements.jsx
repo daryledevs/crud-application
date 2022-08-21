@@ -4,10 +4,7 @@ const DataToElements = ({itemData, setItemData}) => {
 
   function handleDelete(id){
     const delete_id = itemData.filter(find_ID => find_ID.id !== id);
-    const new_itemData = delete_id.map(({id, name, imageURL, price}) => {
-      return {id: (id-1), name: name, imageURL: imageURL, price: price}
-    })
-    setItemData(new_itemData); 
+    setItemData(delete_id); 
   }
   return (
     <tbody>

@@ -10,15 +10,18 @@ const AddLayout = (
     addImageURL,
     setAddImageURL,
     addPrice,
-    setAddPrice
+    setAddPrice,
+    addDescription,
+    setAddDescription,
   }) => {
-
+  const [priceCheck, setPriceCheck] = React.useState(false)
   const navigation = useNavigate();
-  
+
   function refreshState(){
     setAddName('');
     setAddImageURL('');
     setAddPrice('');
+    setAddDescription('');
   };
 
   function create_newID(arr){
@@ -32,18 +35,33 @@ const AddLayout = (
     }
   };
 
-  function addItem(id, name, imageURL, price){
-    const newItemData = {id, name: name, imageURL: imageURL, price: price};
+  function addItem(id, name, imageURL, description, price){
+    const only_letters = /^[a-z]/
+    setPriceCheck(only_letters.test(price));
+
+    if(itemData.find(same_name => same_name.name === addName)) {
+      window.alert("Name already exists!") 
+      return false
+    }
+
+    if(priceCheck){
+      window.alert("Letters is not allowed in Price field, only numbers.");
+      setPriceCheck(false);
+      return false;
+    }
+
+    const newItemData = {id, name: name, imageURL: imageURL, description: description, price: price};
     const addNewItemData = [...itemData, newItemData];
     setItemData(addNewItemData);
+    refreshState();
+    navigation('/')
+    
   };
   
   function addSubmit(event){
     event.preventDefault();
     const newID = create_newID(itemData);
-    addItem(newID, addName, addImageURL, addPrice);
-    refreshState();
-    navigation('/')
+    addItem(newID, addName, addImageURL, addDescription, addPrice);
   }
 
   function handleCancel(){
@@ -70,6 +88,14 @@ const AddLayout = (
           onChange={(event) => setAddImageURL(event.target.value)}
         />
         <p className='example'>i.e.: https://via.placeholder.com/300x250?</p>
+        <label htmlFor='addDescription'>Description:</label>
+        <input
+          id="addDescription"
+          type="text"
+          required
+          value={addDescription}
+          onChange={(event) => setAddDescription(event.target.value)}
+        />
         <label htmlFor='addPrice'>Price:</label>
         <input
           id="addPrice"

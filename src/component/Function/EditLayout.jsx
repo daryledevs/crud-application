@@ -8,7 +8,9 @@ function EditLayout({
   editImageURL,
   setEditImageURL,
   editPrice,
-  setEditPrice
+  setEditPrice,
+  editDescription,
+  setEditDescription
 }) {
   const navigation = useNavigate();
   const {id} = useParams();
@@ -32,8 +34,8 @@ function EditLayout({
     navigation('/');
   };
 
-  function updateItem(id, updateName, updateImageURL, updatePrice){
-    const updateItemData = {id, name: updateName, imageURL: updateImageURL, price: updatePrice};
+  function updateItem(id, updateName, updateImageURL, updateDescription,updatePrice){
+    const updateItemData = {id, name: updateName, imageURL: updateImageURL, description: updateDescription, price: updatePrice};
     const some_array = [...itemData];
     some_array[current_item.id - 1] = updateItemData;
     setItemData(some_array)
@@ -41,7 +43,7 @@ function EditLayout({
 
   function editSubmit(event){
     event.preventDefault();
-    updateItem(id, editName, editImageURL, editPrice);
+    updateItem(id, editName, editImageURL, editDescription, editPrice);
     refreshState();
     navigation('/');
   }
@@ -64,6 +66,13 @@ function EditLayout({
           required
           value={editImageURL}
           onChange={(event) => setEditImageURL(event.target.value)}
+        />
+        <input
+          id="editDescription"
+          type="text"
+          required
+          value={editDescription}
+          onChange={(event) => setEditDescription(event.target.value)}
         />
         <label htmlFor='editPrice'>Price:</label>
         <input
