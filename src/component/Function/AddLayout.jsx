@@ -39,7 +39,7 @@ const AddLayout = (
     const special_char = /^[a-z]/
     const price_input = special_char.test(price)
     
-    if(itemData.find(same_name => same_name.name === addName)) {
+    if(itemData.find(same_name => same_name.name.toLowerCase() === addName.toLowerCase())) {
       window.alert("Name already exists!") 
       return false
     }
@@ -51,8 +51,7 @@ const AddLayout = (
     const addNewItemData = [...itemData, newItemData];
     setItemData(addNewItemData);
     refreshState();
-    navigation('/')
-    
+    navigation('/');
   };
   
   function addSubmit(event){

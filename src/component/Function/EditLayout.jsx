@@ -36,18 +36,29 @@ function EditLayout({
   };
 
   function updateItem(id, updateName, updateImageURL, updateDescription,updatePrice){
+    const special_char = /^[a-z]/
+    const price_input = special_char.test(updatePrice)
+    
+    if(itemData.find(same_name => same_name.name.toLowerCase() === updateName.toLowerCase())) {
+      window.alert("Name already exists!") 
+      return false
+    }
+    if(price_input){
+      window.alert("Letters is not allowed in Price field, only numbers.");
+      return false;
+    }
     const updateItemData = {id, name: updateName, imageURL: updateImageURL, description: updateDescription, price: updatePrice};
     const some_array = [...itemData];
     some_array[current_item.id - 1] = updateItemData;
-    setItemData(some_array)
+    setItemData(some_array);
+    refreshState();
+    navigation('/');
   }
 
   function editSubmit(event){
     event.preventDefault();
     updateItem(id, editName, editImageURL, editDescription, editPrice);
-    refreshState();
-    navigation('/');
-  }
+  };
   
   return (
     <div className='edit-layout-container'>
