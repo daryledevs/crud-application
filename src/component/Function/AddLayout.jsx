@@ -36,17 +36,12 @@ const AddLayout = (
   };
 
   function addItem(id, name, imageURL, description, price){
-    const special_char = /^[a-z]/
-    const price_input = special_char.test(price)
     
     if(itemData.find(same_name => same_name.name.toLowerCase() === addName.toLowerCase())) {
       window.alert("Name already exists!") 
       return false
     }
-    if(price_input){
-      window.alert("Letters is not allowed in Price field, only numbers.");
-      return false;
-    }
+
     const newItemData = {id, name: name, imageURL: imageURL, description: description, price: price};
     const addNewItemData = [...itemData, newItemData];
     setItemData(addNewItemData);
@@ -58,6 +53,11 @@ const AddLayout = (
     event.preventDefault();
     const newID = create_newID(itemData);
     addItem(newID, addName, addImageURL, addDescription, addPrice);
+  }
+
+  function priceOnChange(event){
+    const prevent_letters = event.target.value.replace(/[^0-9]/gi, '');
+    setAddPrice(prevent_letters)
   }
 
   function handleCancel(){
@@ -98,7 +98,7 @@ const AddLayout = (
           type="text"
           required
           value={addPrice}
-          onChange={(event) => setAddPrice(event.target.value)}
+          onChange={priceOnChange}
         />
         <div className='addButtons'>
           <button>Submit</button>

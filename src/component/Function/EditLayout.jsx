@@ -36,23 +36,30 @@ function EditLayout({
   };
 
   function updateItem(id, updateName, updateImageURL, updateDescription,updatePrice){
-    const special_char = /^[a-z]/
-    const price_input = special_char.test(updatePrice)
-    
-    if(itemData.find(same_name => same_name.name.toLowerCase() === updateName.toLowerCase())) {
-      window.alert("Name already exists!") 
-      return false
+    const index_id = id - 1;
+    let isNameExist;
+
+    for (let index = 0; index < itemData.length; index++) {
+      if(index.toString() !== index_id.toString()){
+        isNameExist = (itemData[index].name).toLowerCase() === updateName.toLowerCase()
+        if(isNameExist){
+          window.alert("Name already exists!") 
+          return false
+        }
+      }
     }
-    if(price_input){
-      window.alert("Letters is not allowed in Price field, only numbers.");
-      return false;
-    }
+
     const updateItemData = {id, name: updateName, imageURL: updateImageURL, description: updateDescription, price: updatePrice};
     const some_array = [...itemData];
     some_array[current_item.id - 1] = updateItemData;
     setItemData(some_array);
     refreshState();
     navigation('/');
+  }
+
+  function priceOnChange(event){
+    const prevent_letters = event.target.value.replace(/[^0-9]/gi, '');
+    setEditPrice(prevent_letters)
   }
 
   function editSubmit(event){
@@ -93,7 +100,7 @@ function EditLayout({
           type="text"
           required
           value={editPrice}
-          onChange={(event) => setEditPrice(event.target.value)}
+          onChange={priceOnChange}
         />
         <div className='editButtons'>
           <button onClick={editSubmit}>Update</button>
