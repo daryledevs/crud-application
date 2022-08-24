@@ -5,20 +5,7 @@ import AddLayout from "./component/Function/AddLayout";
 import EditLayout from './component/Function/EditLayout';
 import FullPage from './component/Content/FullPage'
 import{Routes, Route} from 'react-router-dom'
-
-
 function App() {
-  // state for adding items
-  const [addImageURL, setAddImageURL] = React.useState('');
-  const [addName, setAddName] = React.useState('');
-  const [addPrice, setAddPrice] = React.useState('');
-  const [addDescription, setAddDescription] = React.useState('');
-  // state for editing items
-  const [editImageURL, setEditImageURL] = React.useState('');
-  const [editName, setEditName] = React.useState('');
-  const [editPrice, setEditPrice] = React.useState('');
-  const [editDescription, setEditDescription] = React.useState('');
-  // state for data
   const [itemData, setItemData] = React.useState([
     {
       id: 1,
@@ -42,50 +29,18 @@ function App() {
       price: '500'
     }
   ]);
-
+  // console.log(storeItem.name)
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<BaseLayout itemData={itemData}/>}>
-          <Route index element={
-            <Home
-              itemData={itemData}
-              setItemData={setItemData}
-            />} 
-          /> {/* Home end route */}
-          <Route path='page/:id' element={<FullPage itemData={itemData} />}
-          />
+        <Route path="/" element={<BaseLayout/>}>
+          <Route index element={<Home/>} /> 
+          <Route path='page/:id' element={<FullPage/>}/>
           <Route path="add">
-            <Route index element={
-              <AddLayout
-                itemData={itemData}
-                setItemData={setItemData}
-                addName={addName}
-                setAddName={setAddName}
-                addImageURL={addImageURL}
-                setAddImageURL={setAddImageURL}
-                addPrice={addPrice}
-                setAddPrice={setAddPrice}
-                addDescription={addDescription}
-                setAddDescription={setAddDescription}
-              />
-              }
-            /> {/* element AddLayout end route */}
-          </Route> {/* end route of "Add" path */}
+            <Route index element={<AddLayout/>}/> 
+          </Route>
           <Route path="edit/:id">
-            <Route index element={
-              <EditLayout 
-                itemData={itemData}
-                setItemData={setItemData}
-                editName={editName}
-                setEditName={setEditName}
-                editImageURL={editImageURL}
-                setEditImageURL={setEditImageURL}
-                editPrice={editPrice}
-                setEditPrice={setEditPrice}
-                editDescription={editDescription}
-                setEditDescription={setEditDescription}
-              />} />
+            <Route index element={<EditLayout />} />
           </Route> {/* end route of "Edit" path */}
         </Route> {/* BaseLayout end routes */}
       </Routes> 
@@ -94,3 +49,51 @@ function App() {
 }
 export default App;
 
+// return (
+//   <div className="App">
+//     <Routes>
+//       <Route path="/" element={<BaseLayout itemData={itemData}/>}>
+//         <Route index element={
+//           <Home
+//             itemData={itemData}
+//             setItemData={setItemData}
+//           />} 
+//         /> {/* Home end route */}
+//         <Route path='page/:id' element={<FullPage itemData={itemData} />}
+//         />
+//         <Route path="add">
+//           <Route index element={
+//             <AddLayout
+//               itemData={itemData}
+//               setItemData={setItemData}
+//               addName={addName}
+//               setAddName={setAddName}
+//               addImageURL={addImageURL}
+//               setAddImageURL={setAddImageURL}
+//               addPrice={addPrice}
+//               setAddPrice={setAddPrice}
+//               addDescription={addDescription}
+//               setAddDescription={setAddDescription}
+//             />
+//             }
+//           /> {/* element AddLayout end route */}
+//         </Route> {/* end route of "Add" path */}
+//         <Route path="edit/:id">
+//           <Route index element={
+//             <EditLayout 
+//               itemData={itemData}
+//               setItemData={setItemData}
+//               editName={editName}
+//               setEditName={setEditName}
+//               editImageURL={editImageURL}
+//               setEditImageURL={setEditImageURL}
+//               editPrice={editPrice}
+//               setEditPrice={setEditPrice}
+//               editDescription={editDescription}
+//               setEditDescription={setEditDescription}
+//             />} />
+//         </Route> {/* end route of "Edit" path */}
+//       </Route> {/* BaseLayout end routes */}
+//     </Routes> 
+//   </div>
+// );

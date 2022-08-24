@@ -5,13 +5,13 @@ import Footer from './Base/Footer';
 
 import {Outlet} from 'react-router-dom';
 
-const BaseLayout = ({itemData}) => {
+const BaseLayout = () => {
   return (
     <div className='base-layout-container'>
       <Header/>
       <Navigation/>
       <Outlet/>
-      <Footer itemData={itemData} />
+      <Footer/>
     </div>
   )
 }

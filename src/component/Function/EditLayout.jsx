@@ -1,108 +1,101 @@
 import React from 'react'
-import {useNavigate, useParams} from 'react-router-dom'
-function EditLayout({
-  itemData, 
-  setItemData,
-  editName,
-  setEditName,
-  editImageURL,
-  setEditImageURL,
-  editPrice,
-  setEditPrice,
-  editDescription,
-  setEditDescription
-}) {
+import {useNavigate, useParams} from 'react-router-dom';
+import { editItem, selectAllItems } from '../../redux file/action/ItemSlice';
+import { useDispatch, useSelector } from 'react-redux';
+function EditLayout() {
+  const [imageURL, setImageURL] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [price, setPrice] = React.useState('');
+  const [description, setDescription] = React.useState('');
+
+  const dispatch = useDispatch();
+  const itemData = useSelector(selectAllItems)
   const navigation = useNavigate();
   const {id} = useParams();
   const current_item = itemData.find((list) => (list.id).toString() === id);
   
   React.useEffect(()=>{
-    
-    setEditName(current_item.name);
-    setEditImageURL(current_item.imageURL);
-    setEditDescription(current_item.description);
-    setEditPrice(current_item.price);
+    setName(current_item.name);
+    setImageURL(current_item.imageURL);
+    setDescription(current_item.description);
+    setPrice(current_item.price);
   
-  }, [current_item, setEditName,setEditImageURL, setEditPrice])
+  }, [current_item, setName,setImageURL, setPrice, setDescription])
 
   function refreshState(){
-    setEditName('');
-    setEditImageURL('');
-    setEditPrice('');
+    setName('');
+    setImageURL('');
+    setPrice('');
   };
+  
   function handleCancel(){
     refreshState();
     navigation('/');
   };
 
-  function updateItem(id, updateName, updateImageURL, updateDescription,updatePrice){
+ 
+
+  function priceOnChange(event){
+    const prevent_letters = event.target.value.replace(/[^0-9]/gi, '');
+    setPrice(prevent_letters)
+  }
+
+  function editSubmit(event){
+    event.preventDefault();
+
     const index_id = id - 1;
     let isNameExist;
 
     for (let index = 0; index < itemData.length; index++) {
       if(index.toString() !== index_id.toString()){
-        isNameExist = (itemData[index].name).toLowerCase() === updateName.toLowerCase()
+        isNameExist = (itemData[index].name).toLowerCase() === name.toLowerCase()
         if(isNameExist){
           window.alert("Name already exists!") 
           return false
         }
       }
     }
-
-    const updateItemData = {id, name: updateName, imageURL: updateImageURL, description: updateDescription, price: updatePrice};
-    const some_array = [...itemData];
-    some_array[current_item.id - 1] = updateItemData;
-    setItemData(some_array);
+    dispatch(editItem({id, name, imageURL, description, price}));
     refreshState();
     navigation('/');
-  }
-
-  function priceOnChange(event){
-    const prevent_letters = event.target.value.replace(/[^0-9]/gi, '');
-    setEditPrice(prevent_letters)
-  }
-
-  function editSubmit(event){
-    event.preventDefault();
-    updateItem(id, editName, editImageURL, editDescription, editPrice);
   };
   
   return (
     <div className='edit-layout-container'>
       <form className='editForm' onSubmit={event => event.preventDefault()}>
-        <label htmlFor='editName'>Name:</label>
+        <label htmlFor='name'>Name:</label>
         <input
-          id="editName"
+          id="name"
           type="text"
           required
-          value={editName}
-          onChange={(event) => setEditName(event.target.value)}
+          value={name}
+          onChange={(event) => setName(event.target.value)}
         />
-        <label htmlFor='editImageURL'>Image:</label>
+        <label htmlFor='imageURL'>Image:</label>
         <input
-          id="editImageURL"
+          id="imageURL"
           type="text"
           required
-          value={editImageURL}
-          onChange={(event) => setEditImageURL(event.target.value)}
+          value={imageURL}
+          onChange={(event) => setImageURL(event.target.value)}
         />
-        <label htmlFor='editDescription'>Description:</label>
+        <label htmlFor='description'>Description:</label>
         <textarea
-          id="editDescription"
+          id="description"
           type="text"
           required
-          value={editDescription}
-          onChange={(event) => setEditDescription(event.target.value)}
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
-        <label htmlFor='editPrice'>Price:</label>
+        <label htmlFor='price'>Price:</label>
         <input
-          id="editPrice"
+          id="price"
           type="text"
           required
-          value={editPrice}
+          value={price}
           onChange={priceOnChange}
         />
-        <div className='editButtons'>
+        <div className='Buttons'>
           <button onClick={editSubmit}>Update</button>
           <button onClick={handleCancel}>Cancel</button>
         </div>

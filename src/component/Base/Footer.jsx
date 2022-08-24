@@ -1,7 +1,8 @@
 import React from 'react'
-
-const Footer = ({itemData}) => {
-
+import {useSelector} from 'react-redux'
+import { selectAllItems } from '../../redux file/action/ItemSlice'
+const Footer = () => {
+  const itemData = useSelector(selectAllItems);
   const number_of_items = (arr) =>{
     if(arr.length > 1){
       return `${arr.length} items`

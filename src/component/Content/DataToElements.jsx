@@ -1,10 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-const DataToElements = ({itemData, setItemData}) => {
-
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAllItems } from '../../redux file/action/ItemSlice'
+import { deleteItem } from '../../redux file/action/ItemSlice';
+const DataToElements = () => {
+  const itemData = useSelector(selectAllItems);
+  const dispatch = useDispatch();
   function handleDelete(id){
-    const delete_id = itemData.filter(find_ID => find_ID.id !== id);
-    setItemData(delete_id); 
+    dispatch(deleteItem(id));
+    console.log(itemData)
   }
   return (
     <tbody>

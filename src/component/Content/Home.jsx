@@ -2,7 +2,7 @@ import React from 'react'
 import DataToElements from './DataToElements';
 import './home.css'
 
-function Home(props) {
+function Home() {
   return (
     <div className='home-container'>
       <table className='home-table'>
@@ -13,7 +13,7 @@ function Home(props) {
           <td>Price</td>
           <td>Operation</td>
         </thead>
-        <DataToElements {...props}/>
+        <DataToElements/>
       </table>
     </div>
   );

@@ -1,27 +1,23 @@
 import React from 'react'
 import './addLayout.css'
 import {useNavigate} from 'react-router-dom'
-const AddLayout = (
-  {
-    itemData, 
-    setItemData,
-    addName,
-    setAddName,
-    addImageURL,
-    setAddImageURL,
-    addPrice,
-    setAddPrice,
-    addDescription,
-    setAddDescription,
-  }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, selectAllItems } from '../../redux file/action/ItemSlice';
+const AddLayout = () => {
+  const [imageURL, setImageURL] = React.useState('');
+  const [name, setName] = React.useState('');
+  const [price, setPrice] = React.useState('');
+  const [description, setDescription] = React.useState('');
 
   const navigation = useNavigate();
+  const dispatch = useDispatch();
+  const itemData = useSelector(selectAllItems);
 
   function refreshState(){
-    setAddName('');
-    setAddImageURL('');
-    setAddPrice('');
-    setAddDescription('');
+    setName('');
+    setImageURL('');
+    setPrice('');
+    setDescription('');
   };
 
   function create_newID(arr){
@@ -34,30 +30,24 @@ const AddLayout = (
       return 1;
     }
   };
-
-  function addItem(id, name, imageURL, description, price){
-    
-    if(itemData.find(same_name => same_name.name.toLowerCase() === addName.toLowerCase())) {
-      window.alert("Name already exists!") 
-      return false
-    }
-
-    const newItemData = {id, name: name, imageURL: imageURL, description: description, price: price};
-    const addNewItemData = [...itemData, newItemData];
-    setItemData(addNewItemData);
-    refreshState();
-    navigation('/');
-  };
   
   function addSubmit(event){
     event.preventDefault();
-    const newID = create_newID(itemData);
-    addItem(newID, addName, addImageURL, addDescription, addPrice);
+
+    if(itemData.find(same_name => same_name.name.toLowerCase() === name.toLowerCase())){
+      window.alert("Name already exists!") 
+      return false
+    }
+    
+    const id = create_newID(itemData);
+    dispatch(addItem({id, name, imageURL, description, price}));
+    refreshState();
+    navigation('/');
   }
 
   function priceOnChange(event){
     const prevent_letters = event.target.value.replace(/[^0-9]/gi, '');
-    setAddPrice(prevent_letters)
+    setPrice(prevent_letters)
   }
 
   function handleCancel(){
@@ -67,37 +57,37 @@ const AddLayout = (
   return (
     <div className='add-layout-container'>
       <form className='addForm' onSubmit={addSubmit}>
-        <label htmlFor='addName'>Name:</label>
+        <label htmlFor='name'>Name:</label>
         <input
-          id="addName"
+          id="name"
           type="text"
           required
-          value={addName}
-          onChange={(event) => setAddName(event.target.value)}
+          value={name}
+          onChange={(event) => setName(event.target.value)}
         />
-        <label htmlFor='addImageURL'>Image:</label>
+        <label htmlFor='imageURL'>Image:</label>
         <input
-          id="addImageURL"
+          id="imageURL"
           type="text"
           required
-          value={addImageURL}
-          onChange={(event) => setAddImageURL(event.target.value)}
+          value={imageURL}
+          onChange={(event) => setImageURL(event.target.value)}
         />
         <p className='example'>i.e.: https://via.placeholder.com/300x250?</p>
-        <label htmlFor='addDescription'>Description:</label>
+        <label htmlFor='description'>Ddescription:</label>
         <textarea
-          id="addDescription"
+          id="description"
           type="text"
           required
-          value={addDescription}
-          onChange={(event) => setAddDescription(event.target.value)}
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
-        <label htmlFor='addPrice'>Price:</label>
+        <label htmlFor='price'>Price:</label>
         <input
-          id="addPrice"
+          id="price"
           type="text"
           required
-          value={addPrice}
+          value={price}
           onChange={priceOnChange}
         />
         <div className='addButtons'>

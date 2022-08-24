@@ -31,7 +31,7 @@ input{
   width: 300px;
 }
 
-#addDescription, #editDescription{
+#description{
   text-align: start;
   height: 120px;
   width: 300px;
