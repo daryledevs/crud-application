@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAllItems } from '../../redux file/action/ItemSlice'
-import { deleteItem } from '../../redux file/action/ItemSlice';
+import { selectAllItems } from '../../redux file/features/ItemSlice'
+import { deleteItem } from '../../redux file/features/ItemSlice';
 const DataToElements = () => {
   const itemData = useSelector(selectAllItems);
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from 'react'
 import {useNavigate, useParams} from 'react-router-dom';
-import { editItem, selectAllItems } from '../../redux file/action/ItemSlice';
+import { editItem, selectAllItems } from '../../redux file/features/ItemSlice';
 import { useDispatch, useSelector } from 'react-redux';
 function EditLayout() {
   const [imageURL, setImageURL] = React.useState('');

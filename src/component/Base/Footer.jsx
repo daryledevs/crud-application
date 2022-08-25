@@ -1,6 +1,6 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
-import { selectAllItems } from '../../redux file/action/ItemSlice'
+import { selectAllItems } from '../../redux file/features/ItemSlice'
 const Footer = () => {
   const itemData = useSelector(selectAllItems);
   const number_of_items = (arr) =>{

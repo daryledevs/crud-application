@@ -2,7 +2,7 @@ import React from 'react'
 import './addLayout.css'
 import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectAllItems } from '../../redux file/action/ItemSlice';
+import { addItem, selectAllItems } from '../../redux file/features/ItemSlice';
 const AddLayout = () => {
   const [imageURL, setImageURL] = React.useState('');
   const [name, setName] = React.useState('');
