@@ -1,5 +1,8 @@
 {
   "name": "crud-application",
+  "engines": {
+    "node": "16.13.2"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
