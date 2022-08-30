@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from './base/Header';
-import Navigation from './base/Navigation';
-import Footer from './base/Footer';
+import Header from '../component/base/Header';
+import Navigation from '../component/base/Navigation';
+import Footer from '../component/base/Footer';
 
 import {Outlet} from 'react-router-dom';
 
