@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './base/Header';
+import Header from '../component/base/Headergit ';
 import Navigation from './base/Navigation';
 import Footer from './base/Footer';
 
