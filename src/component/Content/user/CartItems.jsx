@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAllItems } from '../../../redux file/features/ItemSlice'
-import { selectBalance } from '../../../redux file/features/UserBalance';
 import { increaseQuantity, decreaseQuantity, removeCartItem } from '../../../redux file/features/CartSlice';
 import { selectAllCart } from '../../../redux file/features/CartSlice';
 const DataToElements = () => {
