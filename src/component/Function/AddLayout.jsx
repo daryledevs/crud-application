@@ -7,6 +7,7 @@ const AddLayout = () => {
   const [imageURL, setImageURL] = React.useState('');
   const [name, setName] = React.useState('');
   const [price, setPrice] = React.useState('');
+  const [availableItem, setAvailableItem] = React.useState('');
   const [description, setDescription] = React.useState('');
 
   const navigation = useNavigate();
@@ -17,6 +18,7 @@ const AddLayout = () => {
     setName('');
     setImageURL('');
     setPrice('');
+    setAvailableItem('');
     setDescription('');
   };
 
@@ -40,9 +42,9 @@ const AddLayout = () => {
     }
     
     const id = create_newID(itemData);
-    dispatch(addItem({id, name, imageURL, description, price}));
+    dispatch(addItem({id, name, imageURL, description, availableItem, price}));
     refreshState();
-    navigation('/');
+    navigation('/admin');
   }
 
   function priceOnChange(event){
@@ -52,7 +54,7 @@ const AddLayout = () => {
 
   function handleCancel(){
     refreshState();
-    navigation('/');
+    navigation('/admin');
   }
   return (
     <div className='add-layout-container'>
@@ -74,13 +76,21 @@ const AddLayout = () => {
           onChange={(event) => setImageURL(event.target.value)}
         />
         <p className='example'>i.e.: https://via.placeholder.com/300x250?</p>
-        <label htmlFor='description'>Ddescription:</label>
+        <label htmlFor='description'>Description:</label>
         <textarea
           id="description"
           type="text"
           required
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+        />
+        <label htmlFor='price'>Available Item:</label>
+        <input
+          id="price"
+          type="text"
+          required
+          value={availableItem}
+          onChange={(event) => setAvailableItem(event.target.value)}
         />
         <label htmlFor='price'>Price:</label>
         <input

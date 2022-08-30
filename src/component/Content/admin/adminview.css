@@ -13,12 +13,15 @@ td {
   position: relative;
   border: 1px solid #ffffff;
   text-align: center;
-  padding: 8px;
+  padding: 8px; 
 }
-
+.home-table > thead > td {
+  font-weight: 700;
+}
 td> *:hover{
   color:  #e9b31e;
 }
+
 .data-link {
   margin: 5%;
   color: black;

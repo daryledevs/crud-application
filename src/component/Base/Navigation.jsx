@@ -1,26 +1,16 @@
 import React from 'react'
-import './base.css'
-import { Link } from 'react-router-dom'
+import AdminNavigation from './AdminNavigation';
+import UserNavigation from './UserNavigation';
+import { useSelector } from 'react-redux';
+import {selectAllMode} from '../../redux file/features/SwitchMode'
 
-import burger_svg from './burger.svg'
 const Navigation = () => {
-  const [show, setShow] = React.useState(false);
-
-  const openMenu = () => {
-    setShow(!show)
-  }
-
+  const mode = useSelector(selectAllMode);
+  
   return (
-    <nav className='navigation-container'>
-      {show? 
-        <>
-          <Link to='/'><p>Home</p></Link>
-          <Link to='add'><p>Add</p></Link>
-        </>
-        : null
-      }
-      <img className='burger-svg' onClick={openMenu} src={burger_svg}/>
-    </nav>
+    <div>
+      {mode.isUserModeOn ? <AdminNavigation/> : <UserNavigation/>}
+    </div>
   )
 }
 

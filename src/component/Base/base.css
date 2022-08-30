@@ -15,6 +15,21 @@
   gap: 2%;
   justify-content: flex-end;
 }
+
+.user-balance{
+  margin-right: auto;
+  margin-left: 2%;
+}
+.user-balance > button{
+  background:#0e273c;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 1000;
+}
+.balance{
+  color: white;
+}
 .navigation-container > *{
   text-decoration: none;
   color:  #0e273c;
@@ -45,4 +60,58 @@
 }
 .burger-svg:hover{
   animation-play-state: paused;
+}
+
+.add-balance-form-bg{
+  position: absolute;
+  z-index: 1;
+  top: -232px;
+  left: -519px;
+  width: 216vh;
+  height: 129vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.add-balance-form{
+  position: absolute;
+  background-color: white;
+  inset: 0;
+  margin: auto;
+  width: 300px;
+  height: 100px;
+  z-index: 2;
+  padding: 1%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.add-balance-form > span{
+  display: flex;
+  align-items: center;
+  gap: 3%;
+}
+
+.add-balance-form > span > label{
+  color: black;
+  margin-bottom: 10px;
+}
+
+.add-balance-form > span > input{
+  width: 180px;
+}
+
+.balance-submit-btn{
+  margin-top: 2%;
+}
+
+.balance-close-btn{
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 15px;
+  font-size: 15px;
+  background: transparent;
 }

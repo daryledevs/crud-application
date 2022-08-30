@@ -1,6 +1,6 @@
 import React from 'react'
 import {useParams} from 'react-router-dom'
-import { selectAllItems } from '../../redux file/features/ItemSlice';
+import { selectAllItems } from '../../../redux file/features/ItemSlice';
 import { useSelector } from 'react-redux'
 const FullPage = () => {
   const itemData = useSelector(selectAllItems);

@@ -6,6 +6,7 @@ function EditLayout() {
   const [imageURL, setImageURL] = React.useState('');
   const [name, setName] = React.useState('');
   const [price, setPrice] = React.useState('');
+  const [availableItem, setAvailableItem] = React.useState('');
   const [description, setDescription] = React.useState('');
 
   const dispatch = useDispatch();
@@ -19,21 +20,21 @@ function EditLayout() {
     setImageURL(current_item.imageURL);
     setDescription(current_item.description);
     setPrice(current_item.price);
-  
+    setAvailableItem(current_item.availableItem);
   }, [current_item, setName,setImageURL, setPrice, setDescription])
 
   function refreshState(){
     setName('');
     setImageURL('');
+    setAvailableItem('');
     setPrice('');
+    setDescription('');
   };
   
   function handleCancel(){
     refreshState();
-    navigation('/');
+    navigation('/admin');
   };
-
- 
 
   function priceOnChange(event){
     const prevent_letters = event.target.value.replace(/[^0-9]/gi, '');
@@ -57,7 +58,7 @@ function EditLayout() {
     }
     dispatch(editItem({id, name, imageURL, description, price}));
     refreshState();
-    navigation('/');
+    navigation('/admin');
   };
   
   return (
@@ -86,6 +87,14 @@ function EditLayout() {
           required
           value={description}
           onChange={(event) => setDescription(event.target.value)}
+        />
+        <label htmlFor='price'>Available Item:</label>
+        <input
+          id="price"
+          type="text"
+          required
+          value={availableItem}
+          onChange={(event) => setAvailableItem(event.target.value)}
         />
         <label htmlFor='price'>Price:</label>
         <input

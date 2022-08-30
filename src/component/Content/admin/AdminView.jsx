@@ -1,8 +1,8 @@
 import React from 'react'
 import DataToElements from './DataToElements';
-import './home.css'
+import './adminview.css'
 
-function Home() {
+function AdminView() {
   return (
     <div className='home-container'>
       <table className='home-table'>
@@ -11,6 +11,7 @@ function Home() {
           <td>Name</td>
           <td>Image</td>
           <td>Price</td>
+          <td className='available-item-title'>Available <br/>Item</td>
           <td>Operation</td>
         </thead>
         <DataToElements/>
@@ -19,4 +20,4 @@ function Home() {
   );
 };
 
-export default Home
+export default AdminView

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAllItems } from '../../redux file/features/ItemSlice'
-import { deleteItem } from '../../redux file/features/ItemSlice';
+import { selectAllItems } from '../../../redux file/features/ItemSlice'
+import { deleteItem } from '../../../redux file/features/ItemSlice';
 const DataToElements = () => {
   const itemData = useSelector(selectAllItems);
   const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const DataToElements = () => {
                 <td><Link to={`page/${tableData.id}`} className='data-link'>{tableData.name}</Link></td>
                 <td><Link to={`page/${tableData.id}`} className='data-link'><img src={tableData.imageURL} width="40px"/></Link></td>
                 <td><Link to={`page/${tableData.id}`} className='data-link'>{tableData.price}</Link></td>
+                <td><Link to={`page/${tableData.id}`} className='data-link'>{tableData.availableItem}</Link></td>
                 <td className='last-item'>
                 <Link to={`edit/${tableData.id}`}><button className='edit-button'>Edit</button></Link>
                 <button className='delete-button'
