@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from '../component/base/Header';
 import Navigation from './base/Navigation';
 import Footer from './base/Footer';
 
@@ -8,7 +7,9 @@ import {Outlet} from 'react-router-dom';
 const BaseLayout = () => {
   return (
     <div className='base-layout-container'>
-      <Header/>
+      <header className='header-container'>
+        <h1>CRUD Application</h1>
+      </header>
       <Navigation/>
       <Outlet/>
       <Footer/>
